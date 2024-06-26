@@ -7,7 +7,7 @@ const MarketingLayout = ({ children }: Props) => {
     return(
         <div className="min-h-screen flex flex-col">
             <Header/>
-            <link rel="icon" href="/mascot.svg" />
+            <link rel="icon" href="/mascot.png" />
             <main className="flex-1 flex flex-col items-center justify-center">
                 {children}
             </main> 
