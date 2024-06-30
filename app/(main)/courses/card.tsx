@@ -3,16 +3,15 @@ import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 
 type Props = {
-    key: number;
     id: number;
     title: string;
     imageSrc: string;
     onClick: (id:number)=>void;
-    disabled: boolean;
-    activeCourseId: boolean;
+    disabled?: boolean;
+    activeCourseId?: boolean;
 }
 
-export const Card = ({ key, id, title, imageSrc, onClick, disabled, activeCourseId }: Props) => {
+export const Card = ({ id, title, imageSrc, onClick, disabled, activeCourseId }: Props) => {
     return (
         <div 
         onClick={()=>onClick(id)}
