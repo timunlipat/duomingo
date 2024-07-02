@@ -24,10 +24,14 @@ const main = async () => {
         await db.insert(schema.courses).values([{ id:3, title:"French", imageSrc:"/france.png" }]);
         await db.insert(schema.courses).values([{ id:4, title:"Spanish", imageSrc:"/spain.png" }]);
 
-        await db.insert(schema.units).values([{ id:1, courseId:1, title:"Unit 1",description:"Learn Korean", order:1}]);
+        await db.insert(schema.units).values([{ id:1, courseId:1, title:"Unit 1",description:"Learn the basics of Korean", order:1}]);
 
         await db.insert(schema.lessons).values([
-            { id: 1, unitId: 1, order: 1, title: "Nouns", },      
+            { id: 1, unitId: 1, order: 1, title: "Test", },
+            { id: 2, unitId: 1, order: 2, title: "Test", },
+            { id: 3, unitId: 1, order: 3, title: "Test", },
+            { id: 4, unitId: 1, order: 4, title: "Test", },
+            { id: 5, unitId: 1, order: 5, title: "Test", },
         ]);
 
         await db.insert(schema.challenges).values([
