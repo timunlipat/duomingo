@@ -28,12 +28,13 @@ export const lessons = pgTable("lessons", {
     id: serial("id").primaryKey(),
     title: text("title").notNull(),
     unitId: integer("unit_id").references(()=> units.id,{ onDelete:"cascade" }).notNull(),
+    order: integer("order").notNull(),
 });
 
 export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST"]);
 export const challenges = pgTable("challenges", {
     id: serial("id").primaryKey(),
-    lessonId: integer("lessen_id").references(() => lessons.id, { onDelete:"cascade" }).notNull(),
+    lessonId: integer("lesson_id").references(() => lessons.id, { onDelete:"cascade" }).notNull(),
     type: challengesEnum("type").notNull(),
     question: text("question").notNull(),
     order: integer("order").notNull(),
@@ -74,7 +75,7 @@ export const unitsRelations = relations(units, ({ one, many }) => ({
         fields: [units.courseId],
         references: [courses.id],
     }),
-    lessons:many(lessons),
+    lessons: many(lessons),
 }));
 
 export const lessonsRelations = relations(lessons, ({ one, many }) => ({
