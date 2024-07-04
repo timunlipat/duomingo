@@ -8,9 +8,9 @@ import { Unit } from "./unit";
 
 const Learn = async () => {
     const userProgressPromise = getUserProgress();
+    const unitsPromise = getUnits();
     const courseProgressPromise = getCourseProgress();
     const lessonPercentagePromise = getLessonPercentage();
-    const unitsPromise = getUnits();
     
     const [
         userProgress, 
