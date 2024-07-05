@@ -18,7 +18,7 @@ type Props = {
     percentage: number;
 };
 
-// TODO: Revisit to understand better
+// TODO: Revisit
 export const LessonButton = ({ id, index, totalCount, locked, current, percentage }: Props) => {
     const cycleLength = 8;
     const cycleIndex = index % cycleLength;

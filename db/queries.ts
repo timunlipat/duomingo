@@ -23,7 +23,7 @@ export const getCourses = cache(async () => {
     return data;
 });
 
-// TODO: Revisit to understand better
+// TODO: Revisit
 export const getUnits = cache(async () => {
     const userProgress = await getUserProgress();
     const { userId } = await auth();
