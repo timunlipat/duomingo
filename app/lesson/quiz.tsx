@@ -25,9 +25,17 @@ export const Quiz = ({initialPercentage, initialHearts, initialLessonId, initial
         const uncompletedIndex = challenges.findIndex((challenge) => !challenge.completed);
         return uncompletedIndex === -1 ? 0 : uncompletedIndex;
     });
+    const [selectedOption, setSelectedOption] = useState<number>();
+    const [status, setStatus] = useState<"correct" | "wrong" | "none">("none");
 
     const currentChallenge = challenges[activeIndex];
     const options = currentChallenge?.challengeOptions ?? [];
+
+    const onSelect = (id: number) => {
+        if (status !== "none") return;
+
+        setSelectedOption(id);
+    };
 
     const title = currentChallenge.type === "ASSIST" ? "Select the correct meaning" : currentChallenge.question;
     
@@ -50,9 +58,9 @@ export const Quiz = ({initialPercentage, initialHearts, initialLessonId, initial
                             )}
                             <Challenge
                                 options={options}
-                                onSelect={ ()=>{} }
-                                status="none"
-                                selectedOptions={undefined}
+                                onSelect={onSelect}
+                                status={status}
+                                selectedOptions={selectedOption}
                                 disabled={false}
                                 type={currentChallenge.type}
                             />
