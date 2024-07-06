@@ -35,13 +35,27 @@ const main = async () => {
         ]);
 
         await db.insert(schema.challenges).values([
-            { id: 1, lessonId: 1, type: "SELECT", order: 1, question: 'Which on of these is "the man"?', },   
+            { id: 1, lessonId: 1, type: "SELECT", order: 1, question: 'Which on of these is "the man"?', },
+            { id: 2, lessonId: 1, type: "ASSIST", order: 2, question: '"the man"', },
+            { id: 3, lessonId: 1, type: "SELECT", order: 3, question: 'Which on of these is "the woman"?', },
         ]);
 
         await db.insert(schema.challengeOptions).values([
-            { id: 1, challengeId: 1, imageSrc: "/man.png", correct: true, text: "남성", audioSrc: "/kr_man.mp3", },   
-            { id: 2, challengeId: 1, imageSrc: "/woman.png", correct: false, text: "여성", audioSrc: "/kr_woman.mp3", },
-            { id: 3, challengeId: 1, imageSrc: "/robot.png", correct: false, text: "로봇", audioSrc: "/kr_robot.mp3", },
+            { challengeId: 1, imageSrc: "/man.png", correct: true, text: "남성", audioSrc: "/kr_man.mp3", },   
+            { challengeId: 1, imageSrc: "/woman.png", correct: false, text: "여성", audioSrc: "/kr_woman.mp3", },
+            { challengeId: 1, imageSrc: "/robot.png", correct: false, text: "로봇", audioSrc: "/kr_robot.mp3", },
+        ]);
+
+        await db.insert(schema.challengeOptions).values([
+            { challengeId: 2, correct: true, text: "남성", audioSrc: "/kr_man.mp3", },   
+            { challengeId: 2, correct: false, text: "여성", audioSrc: "/kr_woman.mp3", },
+            { challengeId: 2, correct: false, text: "로봇", audioSrc: "/kr_robot.mp3", },
+        ]);
+
+        await db.insert(schema.challengeOptions).values([
+            { challengeId: 3, imageSrc: "/man.png", correct: false, text: "남성", audioSrc: "/kr_man.mp3", },   
+            { challengeId: 3, imageSrc: "/woman.png", correct: true, text: "여성", audioSrc: "/kr_woman.mp3", },
+            { challengeId: 3, imageSrc: "/robot.png", correct: false, text: "로봇", audioSrc: "/kr_robot.mp3", },
         ]);
 
         console.log("Seeding finished");

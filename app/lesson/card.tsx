@@ -16,7 +16,7 @@ type Props = {
     onClick: () => void;
     disabled?: boolean;
     status: "correct" | "wrong" | "none";
-    type: typeof challenges.$inferInsert["type"];
+    type: typeof challenges.$inferSelect["type"];
 }
 
 //TODO: Revisit

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Card } from "./card";
 
 type Props = {
-    options: typeof challengeOptions.$inferInsert[];
+    options: typeof challengeOptions.$inferSelect[];
     onSelect: (id: number) => void;
     status: "correct" | "wrong" | "none";
     selectedOptions?: number;
