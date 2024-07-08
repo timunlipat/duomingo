@@ -41,7 +41,7 @@ export const getUnits = cache(async () => {
                         with: {
                             challengeProgress: {
                                 where: eq(challengeProgress.userId, userId)
-                            }
+                            },
                         },
                     },
                 },

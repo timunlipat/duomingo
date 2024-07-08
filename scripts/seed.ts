@@ -27,8 +27,8 @@ const main = async () => {
         await db.insert(schema.units).values([{ id:1, courseId:1, title:"Unit 1",description:"Learn the basics of Korean", order:1}]);
 
         await db.insert(schema.lessons).values([
-            { id: 1, unitId: 1, order: 1, title: "Test", },
-            { id: 2, unitId: 1, order: 2, title: "Test", },
+            { id: 1, unitId: 1, order: 1, title: "Nouns", },
+            { id: 2, unitId: 1, order: 2, title: "Verbs", },
             { id: 3, unitId: 1, order: 3, title: "Test", },
             { id: 4, unitId: 1, order: 4, title: "Test", },
             { id: 5, unitId: 1, order: 5, title: "Test", },
@@ -56,6 +56,14 @@ const main = async () => {
             { challengeId: 3, imageSrc: "/man.png", correct: false, text: "남성", audioSrc: "/kr_man.mp3", },   
             { challengeId: 3, imageSrc: "/woman.png", correct: true, text: "여성", audioSrc: "/kr_woman.mp3", },
             { challengeId: 3, imageSrc: "/robot.png", correct: false, text: "로봇", audioSrc: "/kr_robot.mp3", },
+        ]);
+
+
+
+        await db.insert(schema.challenges).values([
+            { id: 4, lessonId: 2, type: "SELECT", order: 1, question: 'Which on of these is "the man"?', },
+            { id: 5, lessonId: 2, type: "ASSIST", order: 2, question: '"the man"', },
+            { id: 6, lessonId: 2, type: "SELECT", order: 3, question: 'Which on of these is "the woman"?', },
         ]);
 
         console.log("Seeding finished");
