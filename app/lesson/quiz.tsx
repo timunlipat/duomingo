@@ -2,19 +2,22 @@
 
 import Image from "next/image";
 import { toast } from "sonner";
-import { useAudio, useWindowSize } from "react-use";
+import { useAudio, useMount, useWindowSize } from "react-use";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import Confetti from "react-confetti";
 
-import { challengeOptions, challenges } from "@/db/schema";
 import { Header } from "./header";
+import { challengeOptions, challenges } from "@/db/schema";
 import { QuestionBubble } from "./question-bubble";
 import { Challenge } from "./challenge";
 import { Footer } from "./footer";
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
 import { reduceHearts } from "@/actions/user-progress";
 import { ResultCard } from "./result-card";
+
+import { useHeartsModal } from "@/store/use-hearts-modal";
+import { usePracticeModal } from "@/store/use-practice-modal";
 
 type Props = {
     initialPercentage: number;
@@ -28,6 +31,15 @@ type Props = {
 }
 // TODO: Revisit
 export const Quiz = ({initialPercentage, initialHearts, initialLessonId, initialLessonChallenges, userSubscription}: Props) => {
+    const { open: openHeartsModal } = useHeartsModal();
+    const { open: openPracticeModal } = usePracticeModal();
+
+    useMount(() => {
+        if (initialPercentage === 100) {
+            openPracticeModal();
+        }
+    });
+
     const { width, height } = useWindowSize();
 
     const router = useRouter();
@@ -40,7 +52,9 @@ export const Quiz = ({initialPercentage, initialHearts, initialLessonId, initial
 
     const [lessonId] = useState(initialLessonId);
     const [hearts, setHearts] = useState(initialHearts);
-    const [percentage, setPercentage] = useState(initialPercentage);
+    const [percentage, setPercentage] = useState(() => {
+        return (initialPercentage === 100 ? 0 : initialPercentage);
+    });
     const [challenges] = useState(initialLessonChallenges);
     const [activeIndex, setActiveIndex] = useState(() => {
         const uncompletedIndex = challenges.findIndex((challenge) => !challenge.completed);
@@ -88,7 +102,7 @@ export const Quiz = ({initialPercentage, initialHearts, initialLessonId, initial
             startTransition(() => {
                 upsertChallengeProgress(currentChallenge.id).then((response) => {
                     if(response?.error === "hearts") {
-                        console.error("Missing hearts");
+                        openHeartsModal();
                         return;
                     }
 
@@ -106,7 +120,7 @@ export const Quiz = ({initialPercentage, initialHearts, initialLessonId, initial
             startTransition(() => {
                 reduceHearts(currentChallenge.id).then((response) => {
                     if (response?.error === "hearts") {
-                        console.error("Missing hearts");
+                        openHeartsModal();
                         return;
                     }
 
@@ -129,9 +143,9 @@ export const Quiz = ({initialPercentage, initialHearts, initialLessonId, initial
                     width={width}
                     height={height}
                     recycle={false}
-                    numberOfPieces={800}
+                    numberOfPieces={2000}
                     tweenDuration={10000}
-                    gravity={0.03}
+                    gravity={0.02}
                 />
                 <div className="flex flex-col gap-y-4 lg:gap-y-8 max-w-lg mx-auto text-center items-center justify-center h-full">
                     <Image
