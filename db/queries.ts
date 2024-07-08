@@ -2,7 +2,7 @@ import { cache } from "react";
 import db from "@/db/drizzle";
 import { auth } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
-import { challengeProgress, courses, lessons, units, userProgress } from "./schema";
+import { challengeProgress, courses, lessons, units, userProgress, userSubscription } from "./schema";
 
 export const getUserProgress = cache(async() => {
     const { userId } = await auth();
@@ -179,4 +179,24 @@ export const getLessonPercentage = cache(async () => {
     const percentage = Math.round((completedChallenges.length / lesson.challenges.length) * 100);
 
     return percentage;
+});
+
+const DAY_IN_MS = 86_400_000; // Value is 86400000, but in js, it is possible to seperate things with _ for readability
+export const getUserSubscription = cache(async () => {
+    const { userId } = await auth();
+    
+    if (!userId) return null;
+
+    const data = await db.query.userSubscription.findFirst({
+        where: eq(userSubscription.userId, userId),
+    });
+
+    if(!data) return null;
+
+    const isActive = data.stripeSubscriptionId && data.stripeCurrentPeriodEnd?.getTime()! + DAY_IN_MS > Date.now();
+
+    return { 
+        ...data, 
+        isActive: !!isActive, 
+    };
 });
