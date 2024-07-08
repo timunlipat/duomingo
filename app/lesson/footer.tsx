@@ -38,6 +38,7 @@ export const Footer = ({ onCheck, status, disabled, lessonId }: Props) => {
                     <Button
                         variant="default"
                         size={ isMobile ? "sm" : "lg" }
+                        //used (window.location.href) for testing purposes 
                         onClick={() => window.location.href = `/lesson${lessonId}`}
                     >
                         Practice again
