@@ -121,7 +121,7 @@ export const Quiz = ({initialPercentage, initialHearts, initialLessonId, initial
         }
     };
 
-    if (true || !currentChallenge) {
+    if (!currentChallenge) {
         return (
             <>
                 {finishAudio}
