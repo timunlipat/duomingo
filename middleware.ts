@@ -7,6 +7,9 @@ import {
     '/dashboard(.*)',
     '/forum(.*)',
     '/learn(.*)',
+    '/courses(.*)',
+    '/shop(.*)',
+    '/api/webhooks/stripe(.*)'
   ]);
   
   export default clerkMiddleware((auth, req) => {
@@ -16,3 +19,4 @@ import {
   export const config = {
     matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
   };
+  
