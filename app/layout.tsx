@@ -11,7 +11,7 @@ const font = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mingo",
-  description: "Let's learn a language together.",
+  description: "Let&apos;s learn a language together.",
 };
 
 export default function RootLayout({
