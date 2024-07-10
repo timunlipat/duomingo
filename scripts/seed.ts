@@ -35,15 +35,16 @@ const main = async () => {
         ]);
 
         await db.insert(schema.challenges).values([
-            { id: 1, lessonId: 1, type: "SELECT", order: 1, question: 'Which on of these is "the man"?', },
-            { id: 2, lessonId: 1, type: "ASSIST", order: 2, question: '"the man"', },
-            { id: 3, lessonId: 1, type: "SELECT", order: 3, question: 'Which on of these is "the woman"?', },
+            { id: 1, lessonId: 1, type: "ASSIST", order: 1, question: '취미가 뭐예요?', },
+            { id: 2, lessonId: 1, type: "ASSIST", order: 2, question: 'Which on of these is "the man"?', },
+            { id: 3, lessonId: 1, type: "ASSIST", order: 3, question: 'Which on of these is "the woman"?', },
         ]);
 
         await db.insert(schema.challengeOptions).values([
-            { challengeId: 1, imageSrc: "/man.png", correct: true, text: "남성", audioSrc: "/kr_man.mp3", },   
-            { challengeId: 1, imageSrc: "/woman.png", correct: false, text: "여성", audioSrc: "/kr_woman.mp3", },
-            { challengeId: 1, imageSrc: "/robot.png", correct: false, text: "로봇", audioSrc: "/kr_robot.mp3", },
+            { challengeId: 1, correct: false, text: "Does Nicolas own a motorcycle?", },   
+            { challengeId: 1, correct: true, text: "What are your hobbies?",},
+            { challengeId: 1, correct: false, text: "What is she doing?",},
+            { challengeId: 1, correct: false, text: "Can we study outside?",},
         ]);
 
         await db.insert(schema.challengeOptions).values([

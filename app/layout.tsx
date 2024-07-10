@@ -10,7 +10,7 @@ import { PracticeModal } from "@/components/modals/practice-modal";
 const font = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mingo",
+  title: "Duomingo",
   description: "Let&apos;s learn a language together.",
 };
 
@@ -22,6 +22,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <head>
+          <link rel="icon" href="/mascot.png" />
+        </head>
         <body className={font.className}>
           <Toaster/>
           <ExitModal/>

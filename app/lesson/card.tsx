@@ -5,7 +5,6 @@ import { useAudio, useKey } from "react-use";
 import { cn } from "@/lib/utils";
 import { challenges } from "@/db/schema";
 
-
 type Props = {
     id: number;
     imageSrc: string | null;
@@ -20,7 +19,7 @@ type Props = {
 }
 
 //TODO: Revisit
-export const Card = ({ id, imageSrc, audioSrc, text, shortcut, selected, onClick, disabled, status, type }: Props) => {
+export const Card = ({ imageSrc, audioSrc, text, shortcut, selected, onClick, disabled, status, type }: Props) => {
     const [audio, _, controls] = useAudio({ src: audioSrc || ""});
     const handleClick = useCallback(() => {
         if (disabled) return;

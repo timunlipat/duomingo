@@ -1,4 +1,4 @@
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Sidebar } from "@/components/sidebar";
 import { Menu } from "lucide-react";
 
@@ -8,9 +8,11 @@ export const MobileSidebar = () => {
             <SheetTrigger>
                 <Menu className="text-white"/>
             </SheetTrigger>
-            <SheetContent className="p-0 z-[100] w-[256px]" side="left">
-                <Sidebar />
-            </SheetContent>
+            <SheetTitle>
+                <SheetContent className="p-0 w-[256px] z-[100]" side="left">
+                    <Sidebar />
+                </SheetContent>
+            </SheetTitle>
         </Sheet>
     )
 } 
