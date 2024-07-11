@@ -32,7 +32,7 @@ export const ExitModal = () => {
 
     return (
         <Dialog open={isOpen} onOpenChange={close}>
-            <DialogContent className="max-w-md z-[50]">
+            <DialogContent className="max-w-md">
                 <DialogHeader>
                     <div className="flex items-center w-full justify-center mb-5">
                         <Image

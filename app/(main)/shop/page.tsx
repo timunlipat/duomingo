@@ -5,7 +5,6 @@ import { UserProgress } from "@/components/user-progress";
 import { getUserProgress, getUserSubscription } from "@/db/queries";
 import Image from "next/image";
 import { Items } from "./items";
-import { Promo } from "@/components/promo";
 import { Quests } from "@/components/quests";
 
 
